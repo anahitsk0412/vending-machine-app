@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-export const DashboardScreen = () => {
+export const RegisterScreen = () => {
   return (
     <div>
-      <p>src/screens/dashboard.tsx</p>
+      <p>src/screens/register.tsx</p>
 
       <Link to="/orders/20211013H8MW5N">Go to test order page</Link>
     </div>
