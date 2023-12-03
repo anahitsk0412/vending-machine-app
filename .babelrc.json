@@ -1,0 +1,21 @@
+{
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ],
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": "last 2 versions"
+        },
+        "modules": false,
+        "loose": false
+      }
+    ],
+    "@babel/preset-typescript"
+  ]
+}
