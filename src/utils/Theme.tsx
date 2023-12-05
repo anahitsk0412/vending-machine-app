@@ -90,6 +90,14 @@ export const VendyMaTheme = createTheme({
         },
       },
     },
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          fontFamily: 'Autobusbold',
+          background: palette.common.white,
+        },
+      },
+    },
   },
   typography: {
     fontFamily: 'Autobusbold, Arial',

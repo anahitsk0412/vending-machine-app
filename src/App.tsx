@@ -1,15 +1,13 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import { RouterProvider } from 'react-router-dom';
 
-import { router } from './router';
-import { VendyMaTheme } from './utils/theme';
+import AppRoutes from './routes/AppRoutes';
+import { VendyMaTheme } from './utils/Theme';
 
 function App() {
   return (
     <ThemeProvider theme={VendyMaTheme}>
-      <RouterProvider router={router} />
-
+      <AppRoutes />
       <CssBaseline />
     </ThemeProvider>
   );
