@@ -10,12 +10,9 @@ const RequireAuth = ({ children, userRoles }) => {
   const { auth } = useAuth();
 
   useEffect(() => {
-    let currentUser;
-    if (auth) {
-      currentUser = auth || {};
-    }
+    const currentUser = JSON.parse(localStorage.getItem('vendymaUser') || '{}');
 
-    if (currentUser) {
+    if (currentUser?.username) {
       if (currentUser.role) {
         if (userRoles.includes(currentUser.role)) {
           navigate(location.pathname);
@@ -26,7 +23,6 @@ const RequireAuth = ({ children, userRoles }) => {
         return children;
       }
     } else {
-      location.pathname = '/login';
       return navigate('/login');
     }
   }, [children, location.pathname, navigate, userRoles]);

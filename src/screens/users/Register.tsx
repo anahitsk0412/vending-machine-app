@@ -41,6 +41,7 @@ export const RegisterScreen: React.FC = () => {
   useEffect(() => {
     if (authUser.user) {
       setAuth(authUser.user);
+      localStorage.setItem('vendymaUser', JSON.stringify(authUser.user));
       navigate('/dashboard');
     }
   }, [authUser]);
