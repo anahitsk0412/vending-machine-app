@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import useAuth from './useAuth';
 // @ts-ignore
 const RequireAuth = ({ children, userRoles }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  // @ts-ignore
+  const { auth } = useAuth();
 
   useEffect(() => {
     let currentUser;
-    if (localStorage.getItem('vendymaUser')) {
-      currentUser = JSON.parse(localStorage.getItem('vendymaUser') || '{}');
+    if (auth) {
+      currentUser = auth || {};
     }
-
-    console.log('asdkasndlasndlnas', currentUser);
 
     if (currentUser) {
       if (currentUser.role) {
@@ -19,7 +21,6 @@ const RequireAuth = ({ children, userRoles }) => {
           navigate(location.pathname);
         } else {
           navigate('/dashboard');
-          // return <Navigate to="/dashboard" />;
         }
       } else {
         return children;
