@@ -8,15 +8,15 @@ import useAuth from '../../utils/useAuth';
 
 export const LoginScreen: React.FC = () => {
   const navigate = useNavigate();
-  // const [newQuestionValue, setNewQuestionValue] = useState('');
-  // const [qaList, setQaList] = useState<Array<QuestionAnswer>>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
+  const [password, setPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
 
   const authUser = useAppSelector(userSelector);
   const dispatch = useAppDispatch();
   // @ts-ignore
-  const { auth, setAuth } = useAuth();
+  const { setAuth } = useAuth();
 
   useEffect(() => {
     setLoading(authUser.loading);
@@ -24,7 +24,7 @@ export const LoginScreen: React.FC = () => {
   }, [authUser]);
 
   const handleLogin = () => {
-    dispatch(loginUser({ username: 'buyer1', password: 'password3' }));
+    dispatch(loginUser({ username, password }));
   };
 
   useEffect(() => {
@@ -65,13 +65,21 @@ export const LoginScreen: React.FC = () => {
           </Typography>
         </Box>
         <FormControl>
-          <TextField required id="username" label="Username" />
+          <TextField
+            required
+            id="username"
+            label="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <TextField
             required
             id="password"
             label="Password"
             type="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Box sx={{ mt: 1, pl: 1 }}>
             <Link color="inherit" to={'/register'}>

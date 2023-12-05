@@ -10,7 +10,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         // Ignore these action types
-        ignoredActions: ['user/login/fulfilled'],
+        ignoredActions: ['user/login/fulfilled', 'user/register/fulfilled'],
       },
     }),
 });

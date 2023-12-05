@@ -1,7 +1,6 @@
 import { AppBar, Box, IconButton, Stack, Toolbar, Typography } from '@mui/material';
 import { ReactNode } from 'react';
 
-
 export interface HeaderProps {
   username?: string;
   homeLink?: string;
