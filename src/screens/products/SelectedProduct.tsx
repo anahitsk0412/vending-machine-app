@@ -43,7 +43,7 @@ export const SelectedProductScreen = () => {
   useEffect(() => {
     if (order) {
       //TODO: should be changed to getting order by id
-      navigate(`/order/:${order.id}`, { state: order });
+      navigate(`/order/${order.id}`, { state: order });
     }
   }, [order]);
 

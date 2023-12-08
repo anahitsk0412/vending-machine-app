@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import axiosInstance from '../utils/AxiosInstance';
 import { RootState } from '../utils/Store';
@@ -10,6 +10,8 @@ export interface Order {
   sellerId: number;
   id: number;
   createdAt: string;
+  productName: string;
+  change: number[];
 }
 export interface UserState {
   loading: boolean;
