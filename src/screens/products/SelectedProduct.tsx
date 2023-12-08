@@ -40,15 +40,9 @@ export const SelectedProductScreen = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    if (order) {
-      //TODO: should be changed to getting order by id
-      navigate(`/order/${order.id}`, { state: order });
-    }
-  }, [order]);
-
   const handleOrder = () => {
     dispatch(createOrder({ productId: parseInt(id!), quantity }));
+    navigate(`/order`);
   };
   const addDeposit = (deposit: number) => {
     dispatch(addUserDeposit(deposit));

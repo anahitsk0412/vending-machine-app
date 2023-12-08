@@ -1,25 +1,27 @@
-import { Cabin } from '@mui/icons-material';
 import { Divider, Card, Typography, CardHeader, CardContent, CardActions } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { ChangeList } from '../../components/manageBalance/ChangeList';
-import { Order } from '../../features/orderSlice';
+import { resetOrder, orderSelector } from '../../features/orderSlice';
+import { useAppDispatch, useAppSelector } from '../../utils/Reduxhooks';
 
 export const OrderProductScreen = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const [order, setOrder] = useState<Order>();
-
-  useEffect(() => {
-    if (location.state) {
-      setOrder(location.state);
-    }
-  }, [location.state]);
+  const dispatch = useAppDispatch();
+  const { order, loading } = useAppSelector(orderSelector);
 
   const handleDoneChange = () => {
+    dispatch(resetOrder());
     navigate('/dashboard');
   };
+
+  if (loading) {
+    return (
+      <Typography gutterBottom variant="subtitle2" component="div">
+        Loading....
+      </Typography>
+    );
+  }
 
   return (
     <Card sx={{ marginTop: '20px' }}>

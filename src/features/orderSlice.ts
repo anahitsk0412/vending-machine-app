@@ -62,8 +62,14 @@ const orderSlice = createSlice({
       state.error = action.error.message;
     });
   },
-  reducers: {},
+  reducers: {
+    resetOrder: (state) => {
+      state.order = null;
+    },
+  },
 });
+
+export const { resetOrder } = orderSlice.actions;
 
 export const orderSelector = (state: RootState) => state.orderReducer;
 export default orderSlice.reducer;
