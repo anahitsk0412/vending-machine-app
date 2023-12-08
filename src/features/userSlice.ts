@@ -8,6 +8,7 @@ export interface User {
   username: string;
   role: UserRole;
   deposit: number;
+  change?: number[];
 }
 export interface UserState {
   loading: boolean;
@@ -30,6 +31,7 @@ interface RegisterUserPayload {
   username: string;
   password: string;
   role: UserRole;
+  change?: number[];
 }
 
 interface UserDepositPayload {

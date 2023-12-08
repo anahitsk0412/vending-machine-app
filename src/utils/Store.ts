@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import orderReducer from '../features/orderSlice';
 import productReducer from '../features/productSlice';
 import userReducer from '../features/userSlice';
 
@@ -7,6 +8,7 @@ export const store = configureStore({
   reducer: {
     userReducer,
     productReducer,
+    orderReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -16,6 +18,9 @@ export const store = configureStore({
           'user/login/fulfilled',
           'user/register/fulfilled',
           'product/list/fulfilled',
+          'user/withdraw/fulfilled',
+          'user/deposit/fulfilled',
+          'order/fulfilled',
         ],
       },
     }),

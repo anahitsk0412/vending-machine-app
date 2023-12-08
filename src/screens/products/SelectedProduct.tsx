@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ManageBalance } from '../../components/manageBalance/ManageBalance';
 import { ProductDetails } from '../../components/productDetails/ProductDetails';
+import { createOrder, orderSelector } from '../../features/orderSlice';
 import { Product, productSelector } from '../../features/productSlice';
 import { userSelector, addUserDeposit, withdrawBalance } from '../../features/userSlice';
 import { useAppDispatch, useAppSelector } from '../../utils/Reduxhooks';
@@ -14,22 +15,41 @@ export const SelectedProductScreen = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [selectedProduct, setSelectedProduct] = useState<Product>();
-  const [total, setTotal] = useState<number>(1);
+  const [total, setTotal] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(1);
   const { user } = useAppSelector(userSelector);
-  const [charge, setCharge] = useState<number[]>([]);
+  const { order } = useAppSelector(orderSelector);
+  const [change, setChange] = useState<number[]>([]);
 
   useEffect(() => {
     const product = productData.products.filter((item) => item.id === parseInt(id!));
     if (product.length) {
       setSelectedProduct(product[0]);
+      setTotal(product[0].cost);
     }
   }, []);
   const handleQuantityChange = (e: EventTarget, val: number | undefined) => {
+    setQuantity(val!);
     const totalCost = val! * (selectedProduct?.cost || 0);
     setTotal(totalCost);
   };
 
-  const handleOrder = () => navigate('/order');
+  useEffect(() => {
+    if (user?.change?.length) {
+      setChange(user.change);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (order) {
+      //TODO: should be changed to getting order by id
+      navigate(`/order/:${order.id}`, { state: order });
+    }
+  }, [order]);
+
+  const handleOrder = () => {
+    dispatch(createOrder({ productId: parseInt(id!), quantity }));
+  };
   const addDeposit = (deposit: number) => {
     dispatch(addUserDeposit(deposit));
   };
@@ -58,7 +78,7 @@ export const SelectedProductScreen = () => {
             deposit={user?.deposit ?? 0}
             addDeposit={addDeposit}
             withdrawDeposit={handleWithdraw}
-            charge={charge}
+            change={change}
           />
         </Item>
       </Grid>

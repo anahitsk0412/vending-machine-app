@@ -9,7 +9,7 @@ export const buyerRoutes = [
     availability: [UserRole.BUYER],
   },
   {
-    path: '/order',
+    path: '/order/:id',
     ele: <OrderProductScreen />,
     availability: [UserRole.BUYER],
   },

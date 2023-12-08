@@ -1,17 +1,19 @@
 import { Button, Typography, Grid } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { ChangeList } from './ChangeList';
 interface ManageBalanceProps {
   deposit: number;
   addDeposit: (deposit: number) => void;
   withdrawDeposit: () => void;
-  charge: number[];
+  change: number[];
 }
 
 const possiblePaymentOptions = [5, 10, 20, 50, 100];
 
 export const ManageBalance = (props: ManageBalanceProps) => {
   const [showWithdraw, setShowWithdraw] = useState<boolean>(false);
-  const { deposit, addDeposit, withdrawDeposit, charge } = props;
+  const { deposit, addDeposit, withdrawDeposit, change } = props;
 
   const handleAddDeposit = (deposit: number) => {
     addDeposit(deposit);
@@ -19,13 +21,22 @@ export const ManageBalance = (props: ManageBalanceProps) => {
 
   const handleWithdrawDeposit = () => {
     withdrawDeposit();
-    // setShowWithdraw(true);
   };
+
+  const handleDoneChange = () => {
+    setShowWithdraw(false);
+  };
+
+  useEffect(() => {
+    if (change.length) {
+      setShowWithdraw(true);
+    }
+  }, [change]);
 
   return (
     <Grid justifyContent={'space-between'}>
       <Typography gutterBottom variant="h5" component="div">
-        Current deposit: {deposit}
+        Current deposit: {deposit.toFixed(2)}
       </Typography>
       {!showWithdraw && (
         <>
@@ -47,6 +58,12 @@ export const ManageBalance = (props: ManageBalanceProps) => {
           ))}
         </Grid>
       </>
+      {showWithdraw && (
+        <>
+          <hr />
+          <ChangeList handleDoneChange={handleDoneChange} change={change} />
+        </>
+      )}
     </Grid>
   );
 };

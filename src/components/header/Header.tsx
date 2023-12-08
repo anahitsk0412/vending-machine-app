@@ -19,7 +19,7 @@ export interface HeaderProps {
 export const Header = ({
   username,
   logoURL,
-  homeLink = './',
+  homeLink = '/dashboard',
   avatar = 'user.png',
   titleText,
   menuItems,
