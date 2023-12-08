@@ -11,6 +11,6 @@ export const adminRoutes = [
   {
     path: '/update-user',
     ele: <UpdateUserScreen />,
-    availability: [UserRole.BUYER],
+    availability: [UserRole.ADMIN],
   },
 ];

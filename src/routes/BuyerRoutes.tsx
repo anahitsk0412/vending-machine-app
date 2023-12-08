@@ -1,5 +1,5 @@
 import { UserRole } from '../models/UserRoles';
-import { OrderProductScreen } from '../screens/deposit/Order';
+import { OrderProductScreen } from '../screens/order/Order';
 import { SelectedProductScreen } from '../screens/products/SelectedProduct';
 
 export const buyerRoutes = [
