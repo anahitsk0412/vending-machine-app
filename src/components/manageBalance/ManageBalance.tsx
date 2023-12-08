@@ -4,20 +4,22 @@ interface ManageBalanceProps {
   deposit: number;
   addDeposit: (deposit: number) => void;
   withdrawDeposit: () => void;
+  charge: number[];
 }
 
 const possiblePaymentOptions = [5, 10, 20, 50, 100];
 
 export const ManageBalance = (props: ManageBalanceProps) => {
   const [showWithdraw, setShowWithdraw] = useState<boolean>(false);
-  const { deposit, addDeposit, withdrawDeposit } = props;
+  const { deposit, addDeposit, withdrawDeposit, charge } = props;
 
   const handleAddDeposit = (deposit: number) => {
     addDeposit(deposit);
   };
 
   const handleWithdrawDeposit = () => {
-    setShowWithdraw(true);
+    withdrawDeposit();
+    // setShowWithdraw(true);
   };
 
   return (

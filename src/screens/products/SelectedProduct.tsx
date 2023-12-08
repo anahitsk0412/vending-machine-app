@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ManageBalance } from '../../components/manageBalance/ManageBalance';
 import { ProductDetails } from '../../components/productDetails/ProductDetails';
 import { Product, productSelector } from '../../features/productSlice';
-import { userSelector, addUserDeposit } from '../../features/userSlice';
+import { userSelector, addUserDeposit, withdrawBalance } from '../../features/userSlice';
 import { useAppDispatch, useAppSelector } from '../../utils/Reduxhooks';
 
 export const SelectedProductScreen = () => {
@@ -16,6 +16,7 @@ export const SelectedProductScreen = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product>();
   const [total, setTotal] = useState<number>(1);
   const { user } = useAppSelector(userSelector);
+  const [charge, setCharge] = useState<number[]>([]);
 
   useEffect(() => {
     const product = productData.products.filter((item) => item.id === parseInt(id!));
@@ -30,14 +31,12 @@ export const SelectedProductScreen = () => {
 
   const handleOrder = () => navigate('/order');
   const addDeposit = (deposit: number) => {
-    console.log(deposit);
     dispatch(addUserDeposit(deposit));
-    // if (total > user?.deposit!) {
-    //   navigate('/deposit');
-    // }
   };
 
-  const handleWithdraw = () => {};
+  const handleWithdraw = () => {
+    dispatch(withdrawBalance());
+  };
 
   // @ts-ignore
   return (
@@ -59,6 +58,7 @@ export const SelectedProductScreen = () => {
             deposit={user?.deposit ?? 0}
             addDeposit={addDeposit}
             withdrawDeposit={handleWithdraw}
+            charge={charge}
           />
         </Item>
       </Grid>

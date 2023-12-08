@@ -20,12 +20,6 @@ export const LayoutComponent = (props: LayoutProps) => {
 
   const menuItems = [
     {
-      menuItemText: 'Manage deposit',
-      menuItemHandler: () => {
-        navigate('/deposit');
-      },
-    },
-    {
       menuItemText: 'Logout',
       menuItemHandler: () => {
         dispatch(logoutUser());

@@ -68,6 +68,11 @@ export const addUserDeposit = createAsyncThunk(
   }
 );
 
+export const withdrawBalance = createAsyncThunk('user/withdraw', async () => {
+  const response = axiosInstance.patch(`/user/resetbalance`);
+  return response;
+});
+
 export const logoutUser = createAsyncThunk('user/logout', async () => {
   const response = axiosInstance.post(`/user/signout`);
   return response;
@@ -121,6 +126,18 @@ const userSlice = createSlice({
       state.user = action.payload.data;
     });
     builder.addCase(addUserDeposit.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
+
+    builder.addCase(withdrawBalance.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(withdrawBalance.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload.data;
+    });
+    builder.addCase(withdrawBalance.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });
