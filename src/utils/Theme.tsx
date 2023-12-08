@@ -120,6 +120,8 @@ export const VendyMaTheme = createTheme({
     },
     h5: {
       fontSize: '1.75rem',
+      textTransform: 'capitalize',
+      color: palette.nude.main,
     },
     h6: {
       fontSize: '1.5rem',

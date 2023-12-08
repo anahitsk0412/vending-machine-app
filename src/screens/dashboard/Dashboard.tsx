@@ -5,12 +5,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ProductCard } from '../../components/productCard/ProductCard';
-import {
-  getProductList,
-  Product,
-  productSelector,
-  selectProduct,
-} from '../../features/productSlice';
+import { getProductList, Product, productSelector } from '../../features/productSlice';
 import { useAppDispatch, useAppSelector } from '../../utils/Reduxhooks';
 export const DashboardScreen = () => {
   const productData = useAppSelector(productSelector);
@@ -21,9 +16,8 @@ export const DashboardScreen = () => {
     dispatch(getProductList());
   }, []);
 
-  const handleBuy = (product: Product) => {
-    dispatch(selectProduct(product));
-    navigate('/selected-product');
+  const handleBuy = (productId: number) => {
+    navigate(`/selected-product/${productId}`);
   };
 
   return (
@@ -40,7 +34,7 @@ export const DashboardScreen = () => {
                     <Button
                       variant="contained"
                       onClick={() => {
-                        handleBuy(product);
+                        handleBuy(product.id);
                       }}
                     >
                       Buy

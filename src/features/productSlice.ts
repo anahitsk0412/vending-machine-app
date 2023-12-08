@@ -12,14 +12,12 @@ export interface Product {
 export interface ProductState {
   loading: boolean;
   products: Product[] | [];
-  selectedProduct: Product | null;
   error: string | undefined;
 }
 
 const initialState: ProductState = {
   loading: false,
   products: [],
-  selectedProduct: null,
   error: undefined,
 };
 
@@ -58,17 +56,8 @@ const productSlice = createSlice({
     //   state.error = action.error.message;
     // });
   },
-  reducers: {
-    selectProduct: (state, action: PayloadAction<Product>) => {
-      state.selectedProduct = action.payload;
-    },
-    deselectProduct: (state) => {
-      state.selectedProduct = null;
-    },
-  },
+  reducers: {},
 });
-
-export const { selectProduct, deselectProduct } = productSlice.actions;
 
 export const productSelector = (state: RootState) => state.productReducer;
 export default productSlice.reducer;

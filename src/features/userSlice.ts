@@ -32,6 +32,10 @@ interface RegisterUserPayload {
   role: UserRole;
 }
 
+interface UserDepositPayload {
+  deposit: number;
+}
+
 class ThunkArg<T> {}
 
 export const loginUser = createAsyncThunk(
@@ -46,9 +50,19 @@ export const loginUser = createAsyncThunk(
 
 export const registerUser = createAsyncThunk(
   'user/register',
-  async (loginReqData: ThunkArg<RegisterUserPayload>) => {
+  async (registerReqData: ThunkArg<RegisterUserPayload>) => {
     const response = axiosInstance.post(`/user/signup`, {
-      ...loginReqData,
+      ...registerReqData,
+    });
+    return response;
+  }
+);
+
+export const addUserDeposit = createAsyncThunk(
+  'user/deposit',
+  async (depositReqData: ThunkArg<UserDepositPayload>) => {
+    const response = axiosInstance.patch(`/user/deposit`, {
+      deposit: depositReqData,
     });
     return response;
   }
@@ -95,6 +109,18 @@ const userSlice = createSlice({
       state.user = null;
     });
     builder.addCase(logoutUser.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
+
+    builder.addCase(addUserDeposit.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(addUserDeposit.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload.data;
+    });
+    builder.addCase(addUserDeposit.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });

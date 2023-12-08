@@ -5,7 +5,7 @@ import { SelectedProductScreen } from '../screens/products/SelectedProduct';
 
 export const buyerRoutes = [
   {
-    path: '/selected-product',
+    path: '/selected-product/:id',
     ele: <SelectedProductScreen />,
     availability: [UserRole.BUYER],
   },
