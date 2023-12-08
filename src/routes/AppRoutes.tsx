@@ -3,12 +3,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // unprotectedRoutes
 // protectedRoutes
+
 import { adminRoutes } from './AdminRoutes';
 import { buyerRoutes } from './BuyerRoutes';
 import { commonRoutes } from './GeneralRoutes';
 import { RoutesInterface } from './RoutesInterface';
 import { sellerRoutes } from './SellerRoutes';
 import { authRoutes } from './UnprotectedRoutes';
+import { LayoutComponent } from '../components/layout/Layout';
 import RequireAuth from '../utils/RequireAuth';
 
 const AppRoutes = () => {
@@ -23,17 +25,9 @@ const AppRoutes = () => {
 
   return (
     <BrowserRouter>
-      {/*<Nav></Nav>*/}
       <Routes>
         {unprotectedRoutes.map((e) => {
-          return (
-            <Route
-              key={e.path}
-              path={e.path}
-              element={e.ele}
-              // element={e.ele}
-            />
-          );
+          return <Route key={e.path} path={e.path} element={e.ele} />;
         })}
 
         {protectedRoutes.map((e) => {
@@ -41,8 +35,11 @@ const AppRoutes = () => {
             <Route
               key={e.path}
               path={e.path}
-              element={<RequireAuth userRoles={e?.availability}>{e.ele}</RequireAuth>}
-              // element={e.ele}
+              element={
+                <RequireAuth userRoles={e?.availability}>
+                  <LayoutComponent>{e.ele}</LayoutComponent>
+                </RequireAuth>
+              }
             />
           );
         })}

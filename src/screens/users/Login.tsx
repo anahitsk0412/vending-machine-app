@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { loginUser, userSelector } from '../../features/userSlice';
-import { useAppDispatch, useAppSelector } from '../../utils/Hooks';
+import { useAppDispatch, useAppSelector } from '../../utils/Reduxhooks';
 import useAuth from '../../utils/useAuth';
 
 export const LoginScreen: React.FC = () => {

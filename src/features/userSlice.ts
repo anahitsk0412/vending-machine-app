@@ -54,14 +54,17 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const logoutUser = createAsyncThunk('user/logout', async () => {
+  const response = axiosInstance.post(`/user/signout`);
+  return response;
+});
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: (builder) => {
     builder.addCase(loginUser.pending, (state, action) => {
       state.loading = true;
-      // @ts-ignore
-      // state.user = [...state.qAs, { question: action.meta.arg['question'] }];
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.loading = false;
@@ -74,14 +77,24 @@ const userSlice = createSlice({
 
     builder.addCase(registerUser.pending, (state, action) => {
       state.loading = true;
-      // @ts-ignore
-      // state.user = [...state.qAs, { question: action.meta.arg['question'] }];
     });
     builder.addCase(registerUser.fulfilled, (state, action) => {
       state.loading = false;
       state.user = action.payload.data;
     });
     builder.addCase(registerUser.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
+
+    builder.addCase(logoutUser.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(logoutUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = null;
+    });
+    builder.addCase(logoutUser.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });

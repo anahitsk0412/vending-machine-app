@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-import Autobusbold from '../assets/fonts/Autobusbold.ttf';
+import Autobusbold from '../assets/fonts/AsapR.ttf';
 
 const palette = {
   primary: {
@@ -19,7 +19,7 @@ const palette = {
     black: '#272727',
   },
   nude: {
-    main: '#efe9e3',
+    main: '#fd7f01',
   },
 };
 
@@ -66,7 +66,7 @@ export const VendyMaTheme = createTheme({
       styleOverrides: `
                 @font-face {
                   font-family: 'Autobusbold';
-                  src: url(${Autobusbold}) format('opentype');
+                  src: url(${Autobusbold}) format('truetype');
                 }
             `,
     },
@@ -83,9 +83,9 @@ export const VendyMaTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         contained: {
-          padding: '8px 20px',
+          // padding: '8px 20px',
           boxShadow: 'none',
-          borderRadius: '100px',
+          borderRadius: '10px',
           fontSize: '1rem',
         },
       },
@@ -114,6 +114,9 @@ export const VendyMaTheme = createTheme({
     },
     h4: {
       fontSize: '2rem',
+      color: palette.nude.main,
+      letterSpacing: 1.5,
+      fontWeight: 700,
     },
     h5: {
       fontSize: '1.75rem',
