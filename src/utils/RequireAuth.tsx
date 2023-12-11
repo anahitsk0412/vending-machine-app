@@ -11,11 +11,9 @@ const RequireAuth = ({ children, userRoles }) => {
   const { auth } = useAuth();
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem('vendymaUser') || '{}');
-
-    if (currentUser?.username) {
-      if (currentUser.role) {
-        if (userRoles.includes(currentUser.role)) {
+    if (auth?.username) {
+      if (auth.role) {
+        if (userRoles.includes(auth.role)) {
           navigate(location.pathname);
         } else {
           navigate('/dashboard');

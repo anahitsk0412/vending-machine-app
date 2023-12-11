@@ -31,13 +31,12 @@ export const LayoutComponent = (props: LayoutProps) => {
 
   // @ts-ignore
   const { auth } = useAuth();
-  const user = auth && auth?.username ? auth : JSON.parse(localStorage.getItem('vendymaUser')!);
   return (
     <Grid container>
       <Header
         logoURL={'vendyma-logo.png'}
         titleText={'VendyMa!'}
-        username={user?.username || ''}
+        username={auth?.username || ''}
         menuItems={menuItems}
       />
       <MainContainer container>
@@ -49,7 +48,7 @@ export const LayoutComponent = (props: LayoutProps) => {
   );
 };
 
-const MainContainer = styled(Grid)(({ theme }) => {
+const MainContainer = styled(Grid)(() => {
   return {
     display: 'flex',
     justifyContent: 'center',
