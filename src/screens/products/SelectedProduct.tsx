@@ -1,12 +1,13 @@
-import { Button, Grid, Paper, styled, Typography } from '@mui/material';
+import { Button, Grid, Paper, styled } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ManageBalance } from '../../components/manageBalance/ManageBalance';
 import { ProductDetails } from '../../components/productDetails/ProductDetails';
-import { createOrder, orderSelector } from '../../features/orderSlice';
-import { Product, productSelector } from '../../features/productSlice';
+import { createOrder } from '../../features/orderSlice';
+import { productSelector } from '../../features/productSlice';
 import { userSelector, addUserDeposit, withdrawBalance } from '../../features/userSlice';
+import { Product } from '../../models/Product';
 import { useAppDispatch, useAppSelector } from '../../utils/Reduxhooks';
 
 export const SelectedProductScreen = () => {
@@ -18,7 +19,6 @@ export const SelectedProductScreen = () => {
   const [total, setTotal] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(1);
   const { user } = useAppSelector(userSelector);
-  const { order } = useAppSelector(orderSelector);
   const [change, setChange] = useState<number[]>([]);
 
   useEffect(() => {

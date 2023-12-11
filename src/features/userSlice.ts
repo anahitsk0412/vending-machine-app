@@ -1,15 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { User } from '../models/User';
 import { UserRole } from '../models/UserRoles';
 import axiosInstance from '../utils/AxiosInstance';
 import { RootState } from '../utils/Store';
-export interface User {
-  id: number;
-  username: string;
-  role: UserRole;
-  deposit: number;
-  change?: number[];
-}
 export interface UserState {
   loading: boolean;
   user: User | null;

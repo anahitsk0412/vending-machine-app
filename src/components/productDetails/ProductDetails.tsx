@@ -1,7 +1,7 @@
 import { Stack, Typography } from '@mui/material';
 
 import { QuantityInput } from './IncrementDecrement';
-import { Product } from '../../features/productSlice';
+import { Product } from '../../models/Product';
 
 interface ProductDetailsProps {
   handleQuantityChange: (e: EventTarget, val: number | undefined) => void;

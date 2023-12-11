@@ -83,7 +83,7 @@ export const LoginScreen: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Box sx={{ mt: 1, pl: 1 }}>
-            <Link color="inherit" to={'/register'}>
+            <Link color="primary" to={'/register'}>
               Not a customer? Register now!
             </Link>
           </Box>

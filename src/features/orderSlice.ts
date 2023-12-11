@@ -1,18 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+import { Order } from '../models/Order';
 import axiosInstance from '../utils/AxiosInstance';
 import { RootState } from '../utils/Store';
-export interface Order {
-  productId: number;
-  quantity: number;
-  price: number | string;
-  buyerId: number;
-  sellerId: number;
-  id: number;
-  createdAt: string;
-  productName: string;
-  change: number[];
-}
 export interface UserState {
   loading: boolean;
   order: Order | null;

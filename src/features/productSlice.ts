@@ -1,14 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { Product } from '../models/Product';
 import axiosInstance from '../utils/AxiosInstance';
 import { RootState } from '../utils/Store';
-export interface Product {
-  id: number;
-  name: string;
-  cost: number;
-  amountAvailable: number;
-  sellerId: number;
-}
 export interface ProductState {
   loading: boolean;
   products: Product[] | [];
@@ -43,18 +37,6 @@ const productSlice = createSlice({
       state.loading = false;
       state.error = action.error.message;
     });
-
-    // builder.addCase(registerUser.pending, (state, action) => {
-    //   state.loading = true;
-    // });
-    // builder.addCase(registerUser.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.user = action.payload.data;
-    // });
-    // builder.addCase(registerUser.rejected, (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.error.message;
-    // });
   },
   reducers: {},
 });

@@ -105,7 +105,7 @@ export const RegisterScreen: React.FC = () => {
           </RadioGroup>
 
           <Box sx={{ mt: 1, pl: 1 }}>
-            <Link color="inherit" to={'/login'}>
+            <Link color="primary" to={'/login'}>
               Already a customer? Go to Login!
             </Link>
           </Box>

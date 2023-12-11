@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import useAuth from './useAuth';
+
 // @ts-ignore
 const RequireAuth = ({ children, userRoles }) => {
   const navigate = useNavigate();

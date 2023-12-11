@@ -1,11 +1,11 @@
-import { Button, Grid, styled } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 
 import { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
 import { ProductCard } from '../../components/productCard/ProductCard';
-import { getProductList, Product, productSelector } from '../../features/productSlice';
+import { getProductList, productSelector } from '../../features/productSlice';
 import { useAppDispatch, useAppSelector } from '../../utils/Reduxhooks';
 export const DashboardScreen = () => {
   const productData = useAppSelector(productSelector);

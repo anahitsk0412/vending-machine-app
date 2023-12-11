@@ -3,7 +3,7 @@ import { Grid, Typography, Skeleton } from '@mui/material';
 import { ReactNode } from 'react';
 
 import { StyledCardMedia, StyledCard, StyledCardContent, StyledCardActions } from './styles';
-import { Product } from '../../features/productSlice';
+import { Product } from '../../models/Product';
 
 interface IPersonaCardProps {
   image: string;
