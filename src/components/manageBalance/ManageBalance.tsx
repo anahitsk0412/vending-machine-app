@@ -36,7 +36,7 @@ export const ManageBalance = (props: ManageBalanceProps) => {
   return (
     <Grid justifyContent={'space-between'}>
       <Typography gutterBottom variant="h5" component="div">
-        Current deposit: {deposit.toFixed(2)}
+        Current deposit: {Number(deposit).toFixed(2)}
       </Typography>
       {!showWithdraw && (
         <>

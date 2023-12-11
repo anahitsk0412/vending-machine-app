@@ -21,6 +21,7 @@ export const store = configureStore({
           'user/withdraw/fulfilled',
           'user/deposit/fulfilled',
           'order/fulfilled',
+          'user/logout/fulfilled',
         ],
       },
     }),

@@ -21,10 +21,10 @@ export const LayoutComponent = (props: LayoutProps) => {
   const menuItems = [
     {
       menuItemText: 'Logout',
-      menuItemHandler: () => {
-        dispatch(logoutUser());
-        localStorage.clear();
-        navigate('/login');
+      menuItemHandler: async () => {
+        await dispatch(logoutUser());
+        await localStorage.clear();
+        await navigate('/login');
       },
     },
   ];

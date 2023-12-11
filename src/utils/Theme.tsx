@@ -80,10 +80,16 @@ export const VendyMaTheme = createTheme({
         },
       },
     },
+    MuiFormGroup: {
+      styleOverrides: {
+        root: {
+          padding: '10px',
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         contained: {
-          // padding: '8px 20px',
           boxShadow: 'none',
           borderRadius: '10px',
           fontSize: '1rem',

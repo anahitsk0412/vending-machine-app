@@ -20,32 +20,38 @@ export const DashboardScreen = () => {
     navigate(`/selected-product/${productId}`);
   };
 
+  const handleAddProduct = () => navigate(`/add-product`);
+
   return (
     <Grid container justifyContent="center">
-      {productData.products && (
-        <Grid sx={{ mt: 2, mb: 2 }} container spacing={3}>
-          {productData.products.map((product) => {
-            return (
-              <Grid item md={3} key={product.id} sx={{ minWidth: '200px' }}>
-                <ProductCard
-                  image={`${product.name.replace(' ', '-')}.png`}
-                  content={product}
-                  actionBar={
-                    <Button
-                      variant="contained"
-                      onClick={() => {
-                        handleBuy(product.id);
-                      }}
-                    >
-                      Buy
-                    </Button>
-                  }
-                />
-              </Grid>
-            );
-          })}
+      <Grid sx={{ mt: 2, mb: 2 }} container spacing={3}>
+        <Grid container justifyContent="flex-end">
+          <Button variant="contained" onClick={handleAddProduct}>
+            Add Product
+          </Button>
         </Grid>
-      )}
+        {productData?.products.map((product) => {
+          return (
+            <Grid item md={3} key={product.id} sx={{ minWidth: '200px' }}>
+              <ProductCard
+                //TODO: Should be fixed with real images when image uploader is integrated
+                image={`${product.name.replace(' ', '-')}.png`}
+                content={product}
+                actionBar={
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      handleBuy(product.id);
+                    }}
+                  >
+                    Buy
+                  </Button>
+                }
+              />
+            </Grid>
+          );
+        })}
+      </Grid>
     </Grid>
   );
 };
