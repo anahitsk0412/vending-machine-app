@@ -1,4 +1,4 @@
-import { FormControl, Box, TextField, Button, Typography, Grid, Container } from '@mui/material';
+import { TextField, Button, Typography, Card, Divider, styled } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -16,7 +16,7 @@ const validationSchema = yup.object({
   amountAvailable: yup.number().required('amountAvailable is required'),
 });
 
-export const CreateProductScreen: React.FC = () => {
+export const CreateUpdateProductScreen: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -70,7 +70,11 @@ export const CreateProductScreen: React.FC = () => {
   });
 
   return (
-    <Container sx={{ mt: 8 }}>
+    <StyledCard>
+      <Typography gutterBottom variant="h5" component="div">
+        Create / Edit Product
+      </Typography>
+      <Divider />
       <form onSubmit={formik.handleSubmit} autoComplete="off">
         <TextField
           required
@@ -109,6 +113,14 @@ export const CreateProductScreen: React.FC = () => {
           Submit
         </Button>
       </form>
-    </Container>
+    </StyledCard>
   );
 };
+
+const StyledCard = styled(Card)(({ theme }) => ({
+  marginTop: theme.spacing(8),
+  padding: theme.spacing(4),
+  '& .MuiTextField-root': {
+    marginTop: theme.spacing(2),
+  },
+}));

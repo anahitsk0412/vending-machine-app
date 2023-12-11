@@ -1,16 +1,15 @@
 import { UserRole } from '../models/UserRoles';
-import { CreateProductScreen } from '../screens/products/CreateUpdateProduct';
-import { EditProductScreen } from '../screens/products/EditProduct';
+import { CreateUpdateProductScreen } from '../screens/products/CreateUpdateProduct';
 
 export const sellerRoutes = [
   {
     path: '/create-product',
-    ele: <CreateProductScreen />,
+    ele: <CreateUpdateProductScreen />,
     availability: [UserRole.SELLER],
   },
   {
     path: '/update-product/:id',
-    ele: <CreateProductScreen />,
+    ele: <CreateUpdateProductScreen />,
     availability: [UserRole.SELLER],
   },
 ];
