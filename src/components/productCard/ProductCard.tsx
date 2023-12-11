@@ -1,6 +1,6 @@
 import { Grid, Typography, Skeleton } from '@mui/material';
 
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { StyledCardMedia, StyledCard, StyledCardContent, StyledCardActions } from './styles';
 import { Product } from '../../models/Product';
@@ -13,18 +13,18 @@ interface IPersonaCardProps {
 
 export const ProductCard = (props: IPersonaCardProps) => {
   const { image, content, actionBar } = props;
+  const [loaded, setIsLoaded] = useState<boolean>(false);
   return (
     <StyledCard>
-      {image ? (
-        <StyledCardMedia
-          // @ts-ignore
-          component="img"
-          src={image}
-          title={`product ${content.id}`}
-        />
-      ) : (
-        <Skeleton variant="rectangular" height={118} />
-      )}
+      <StyledCardMedia
+        // @ts-ignore
+        component="img"
+        src={image}
+        onLoad={() => setIsLoaded(true)}
+        sx={{ ...(!loaded && { display: 'none' }) }}
+        title={`product ${content.id}`}
+      />
+      {!(image && loaded) && <Skeleton variant="rectangular" height={118} />}
       <StyledCardContent>
         <Typography gutterBottom variant="subtitle3" component="div">
           {content.name}
